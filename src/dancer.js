@@ -7,16 +7,16 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
 
-  this.step();
-
+  //every instantiation calls step and setPosition
+  this.step(timeBetweenSteps);
   this.setPosition(top, left);
 };
 
 
-makeDancer.prototype.step = function() {
+makeDancer.prototype.step = function(timeBetweenSteps) {
   // the basic dancer doesn't do anything interesting at all on each step,
   // it just schedules the next step
-  setTimeout(this.step, this.timeBetweenSteps);
+  setTimeout(this.step, timeBetweenSteps);
 };
 
 makeDancer.prototype.setPosition = function(top, left) {
