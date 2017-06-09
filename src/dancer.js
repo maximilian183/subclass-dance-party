@@ -1,8 +1,6 @@
 // Creates and returns a new dancer object that can step
 var makeDancer = function(top, left, timeBetweenSteps) {
 
-  //var dancer = {};
-
   // use jQuery to create an HTML <span> tag
   this.$node = $('<span class="dancer"></span>');
   this.timeBetweenSteps = timeBetweenSteps;
@@ -11,13 +9,12 @@ var makeDancer = function(top, left, timeBetweenSteps) {
   this.step();
   this.setPosition(top, left);
 };
-//hello max!
 
 makeDancer.prototype.step = function() {
   // the basic dancer doesn't do anything interesting at all on each step,
   // it just schedules the next step
-  setTimeout(this.step, this.timeBetweenSteps);
-};
+  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+};// i believe that we are binding the "blinkydancer-this"otherwise we would lose it when settimeout invokes this.step.
 
 makeDancer.prototype.setPosition = function(top, left) {
   // Use css top and left properties to position our <span> tag
