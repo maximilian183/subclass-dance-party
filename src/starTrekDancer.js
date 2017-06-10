@@ -3,7 +3,28 @@ var makeStarTrekDancer = function(top, left, timeBetweenSteps) {
   // so we must keep a copy of the old version of this function
   makeDancer.call(this, top, left, timeBetweenSteps);
 
-  this.$node = $('<span class="dancer"><img src="img/klingon_green.png" height="50" width="50" ></span>');
+  var randomNumber = Math.floor(Math.random()*5);
+
+  if (randomNumber === 0){
+    this.$node = $('<span class="starTrekDancer"><img src="img/andorian_white.png" height="50" width="50" ></span>');
+  }
+  if (randomNumber === 1){
+    this.$node = $('<span class="starTrekDancer"><img src="img/borg_red.png" height="50" width="50" ></span>');
+  }
+  if (randomNumber === 2){
+    this.$node = $('<span class="starTrekDancer"><img src="img/klingon_green.png" height="50" width="50" ></span>');
+  }
+  if (randomNumber === 3){
+    this.$node = $('<span class="starTrekDancer"><img src="img/person_purple.png" height="50" width="50" ></span>');
+  }
+  if (randomNumber === 4){
+    this.$node = $('<span class="starTrekDancer"><img src="img/vulcan_blue.png" height="50" width="50" ></span>');
+  }
+
+
+
+
+
 
   this.setPosition(top, left);
 
