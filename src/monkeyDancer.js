@@ -17,4 +17,3 @@ makeBlinkyDancer.prototype.step = function() {
 };
 
 
-
