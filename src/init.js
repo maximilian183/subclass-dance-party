@@ -29,6 +29,30 @@ $(document).ready(function() {
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+
+    window.dancers.push(dancer.$node);
   });
+
+
+  // click handler to invoke function
+  $('.goLeft').on('click', function(event){
+    // getting a string
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+
+    // we watn invoke the method on DMF
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+
+    dancerMakerFunction.prototype.lineUp('.starTrekDancer');
+  });
+
 });
 
+function sayHello(){
+    $(this).data('dancer-maker-function-name');
+
+    // we watn invoke the method on DMF
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+
+    dancerMakerFunction.prototype.lineUp('.starTrekDancer');
+
+}
