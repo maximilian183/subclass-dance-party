@@ -53,14 +53,27 @@ makeStarTrekDancer.prototype.lineUp = function(whichNode) {
 };
 
 makeStarTrekDancer.prototype.sayHello = function(node) {
+
   var targetNode = this.findClosest(node);
+  //Finding closest node to the node you clicked on
 
-  this.$node = $('<span class="starTrekDancer monkey"><img src="img/monkey.png" height="50" width="50" ></span>');
-  this.setPosition(parseInt($(node).css('top')), 1400);
+  $targetNode.
 
+  //Creating a monkey node off window
+  this.$node = $('<span class="monkeyDancer"><img src="img/monkey.png" height="200" width="200" ></span>');
+  console.log($(targetNode).css('top'));
+  this.setPosition($(targetNode).css('top'), 200);
+
+  //Appending monkey node to the DOM body
+  $('body').append(this.$node);
+
+
+  //Transforming the position to collide monkey with cloest node
   this.$node.css('transform', 'translateX(' + $(targetNode).css('left') + 'px)');
+  console.log(this.$node.css('transform'));
   this.$node.css('-webkit-transform', 'translateX(' + $(targetNode).css('left') + 'px)');
 };
+
 
 makeStarTrekDancer.prototype.findClosest = function(node){
   var closestDist = Number.MAX_VALUE;

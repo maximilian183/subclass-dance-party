@@ -29,9 +29,16 @@ body, a:link, a:visited, a:active{
   position:absolute;
 }
 
-.starTrekDancer, .monkeyDancer{
+.starTrekDancer{
   position:absolute;
   -webkit-transition: -webkit-transform 2s;
   transition: transform 5s;
+  transition-timing-function: ease-in-out;
+}
+
+.monkeyDancer{
+  position:absolute;
+  -webkit-transition: -webkit-transform 2s;
+  transition: transform 2s;
   transition-timing-function: ease-in-out;
 }
