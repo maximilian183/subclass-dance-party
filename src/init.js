@@ -47,12 +47,3 @@ $(document).ready(function() {
 
 });
 
-function sayHello(){
-    $(this).data('dancer-maker-function-name');
-
-    // we watn invoke the method on DMF
-    var dancerMakerFunction = window[dancerMakerFunctionName];
-
-    dancerMakerFunction.prototype.lineUp('.starTrekDancer');
-
-}

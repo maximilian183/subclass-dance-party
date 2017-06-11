@@ -6,19 +6,19 @@ var makeStarTrekDancer = function(top, left, timeBetweenSteps) {
   var randomNumber = Math.floor(Math.random()*5);
 
   if (randomNumber === 0){
-    this.$node = $('<a href=# class="starTrekDancer andorian" onclick="sayHello()"><img src="img/andorian_white.png" height="50" width="50" ></a>');
+    this.$node = $('<span id="starTrekDancer" class="starTrekDancer andorian" onclick="makeStarTrekDancer.prototype.sayHello(this)"><img src="img/andorian_white.png" height="50" width="50" ></span>');
   }
   if (randomNumber === 1){
-    this.$node = $('<span class="starTrekDancer borg" onclick="sayHello()"><img src="img/borg_red.png" height="50" width="50" ></span>');
+    this.$node = $('<span class="starTrekDancer borg" onclick="makeStarTrekDancer.prototype.sayHello(this)"><img src="img/borg_red.png" height="50" width="50" ></span>');
   }
   if (randomNumber === 2){
-    this.$node = $('<span class="starTrekDancer klingon" onclick="sayHello()"><img src="img/klingon_green.png" height="50" width="50" ></span>');
+    this.$node = $('<span class="starTrekDancer klingon" onclick="makeStarTrekDancer.prototype.sayHello(this)"><img src="img/klingon_green.png" height="50" width="50" ></span>');
   }
   if (randomNumber === 3){
-    this.$node = $('<span class="starTrekDancer person"><img src="img/person_purple.png" height="50" width="50" ></span>');
+    this.$node = $('<span class="starTrekDancer person" onclick="makeStarTrekDancer.prototype.sayHello(this)"><img src="img/person_purple.png" height="50" width="50" ></span>');
   }
   if (randomNumber === 4){
-    this.$node = $('<span class="starTrekDancer vulcan"><img src="img/vulcan_blue.png" height="50" width="50" ></span>');
+    this.$node = $('<span class="starTrekDancer vulcan" onclick="makeStarTrekDancer.prototype.sayHello(this)"><img src="img/vulcan_blue.png" height="50" width="50" ></span>');
   }
 
   this.setPosition(top, left);
@@ -31,19 +31,51 @@ makeStarTrekDancer.prototype.constructor = makeStarTrekDancer;
 
 makeStarTrekDancer.prototype.step = function() {
   // call the old version of step at the beginning of any call to this new version of step
-  makeDancer.prototype.step.call(this);
+  //makeDancer.prototype.step.call(this);
   // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped html tag.
-  this.$node.toggle();
+  //this.$node.toggle();
 };
 
 makeStarTrekDancer.prototype.lineUp = function(whichNode) {
   this.$node = $(whichNode);
-  this.setPosition(top,0);
-}
+  for (var i=0; i < window.dancers.length; i++){
 
-makeStarTrekDancer.prototype.WarOfTheApes = function(){
+    // vertical distance from the top of the window
+    var distance = 500 - parseInt(window.dancers[i].css('top'));
+
+    // horizon line is 700
+    window.dancers[i].css('transform', 'translateY(' + distance + 'px)');
+    window.dancers[i].css('-webkit-transform', 'translateY(' + distance + 'px)');
+  }
+
+};
+
+makeStarTrekDancer.prototype.sayHello = function(node) {
+  var targetNode = this.findClosest(node);
+
   this.$node = $('<span class="starTrekDancer monkey"><img src="img/monkey.png" height="50" width="50" ></span>');
-  this.setPosition(top, left);
+  this.setPosition(parseInt($(node).css('top')), 1400);
+
+  this.$node.css('transform', 'translateX(' + $(targetNode).css('left') + 'px)');
+  this.$node.css('-webkit-transform', 'translateX(' + $(targetNode).css('left') + 'px)');
+};
+
+makeStarTrekDancer.prototype.findClosest = function(node){
+  var closestDist = Number.MAX_VALUE;
+  var closestNode = null;
+
+  for(var i = 0; i < window.dancers.length; i++){
+    var xdist = parseInt(window.dancers[i].css('left')) - parseInt($(node).css('left'));
+    var ydist = parseInt(window.dancers[i].css('top')) - parseInt($(node).css('top'));
+    var dist = Math.sqrt( Math.pow(xdist, 2) + Math.pow(ydist, 2));
+
+    if (dist < closestDist && dist !== 0) {
+      closestDist = dist;
+      closestNode = window.dancers[i];
+    }
+  }
+  console.log(closestNode);
+  return closestNode;
 }
