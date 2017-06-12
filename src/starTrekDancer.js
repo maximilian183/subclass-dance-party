@@ -91,4 +91,4 @@ makeStarTrekDancer.prototype.findClosest = function(node){
   }
   console.log(closestNode);
   return closestNode;
-}
+};
