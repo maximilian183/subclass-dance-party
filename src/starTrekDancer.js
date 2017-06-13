@@ -36,16 +36,16 @@ var makeStarTrekDancer = function(top, left, timeBetweenSteps) {
 makeStarTrekDancer.prototype = Object.create(makeDancer.prototype);
 makeStarTrekDancer.prototype.constructor = makeStarTrekDancer;
 
-makeStarTrekDancer.prototype.lineUp = function(whichNode, array) {
+makeStarTrekDancer.prototype.lineUp = function(whichNode, array, whatLine) {
   this.$node = $(whichNode);
-  for (var i = 0; i < window.dancers.length; i++) {
+  for (var i = 0; i < array.length; i++) {
 
     // vertical distance from the top of the window
-    var distance = 500 - parseInt(window.dancers[i].css('top'));
+    var distance = whatLine - parseInt(array[i].css('top'));
 
     // horizon line is 700
-    window.dancers[i].css('transform', 'translateY(' + distance + 'px)');
-    window.dancers[i].css('-webkit-transform', 'translateY(' + distance + 'px)');
+    array[i].css('transform', 'translateY(' + distance + 'px)');
+    array[i].css('-webkit-transform', 'translateY(' + distance + 'px)');
   }
 };
 
@@ -89,7 +89,7 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
 
   //show the victor
   if (window.dancers.length === 1 && !window.CROWNEDKING){
-    this.lineUp($(clickedNode), window.dancers);
+    this.lineUp($(clickedNode), window.dancers, 500);
 
     // Taking the attribute of 'class' to get string for winner announcement
     var type = $(clickedNode).attr('class').replace('starTrekDancer ', '');
