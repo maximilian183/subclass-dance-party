@@ -35,6 +35,7 @@ body, a:link, a:visited, a:active{
   border-radius:3px;
 }
 
+ /* class of starTrekDancer and all children images of starTrekDancer nodes */
 .starTrekDancer, .starTrekDancer img{
   position:absolute;
   -webkit-transition: all 5s;
@@ -42,6 +43,7 @@ body, a:link, a:visited, a:active{
   transition-timing-function: ease-in-out;
 }
 
+ /* all transitions on monkeyDancer are 1 second*/
 .monkeyDancer{
   position:absolute;
   -webkit-transition: all 1s;
@@ -49,6 +51,9 @@ body, a:link, a:visited, a:active{
   transition-timing-function: ease-in-out;
 }
 
+ /* position absolute forces an element to stay in a specific palce
+   z-index - the highter the numbers, the more front the image is
+           - only works with position absolute */
 .monkeyDancer img{
   position: absolute;
   z-index: -1;
