@@ -6,8 +6,9 @@ body{
   background-color:#444;
   font-size: 18px;
   background-image: url("img/sky.jpg");
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
+  background-position: 0 100%;
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
@@ -29,16 +30,36 @@ body, a:link, a:visited, a:active{
   position:absolute;
 }
 
-.starTrekDancer{
+.target{
+  border:3px solid red;
+  border-radius:3px;
+}
+
+ /* class of starTrekDancer and all children images of starTrekDancer nodes */
+.starTrekDancer, .starTrekDancer img{
   position:absolute;
-  -webkit-transition: -webkit-transform 2s;
-  transition: transform 5s;
+  -webkit-transition: all 5s;
+  transition: all 5s;
   transition-timing-function: ease-in-out;
 }
 
+ /* all transitions on monkeyDancer are 1 second*/
 .monkeyDancer{
   position:absolute;
-  -webkit-transition: -webkit-transform 2s;
-  transition: transform 2s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
   transition-timing-function: ease-in-out;
+}
+
+ /* position absolute forces an element to stay in a specific palce
+   z-index - the highter the numbers, the more front the image is
+           - only works with position absolute */
+.monkeyDancer img{
+  position: absolute;
+  z-index: -1;
+}
+
+.victor{
+  text-align: center;
+  font-size: 150px;
 }
