@@ -36,7 +36,7 @@ var makeStarTrekDancer = function(top, left, timeBetweenSteps) {
 makeStarTrekDancer.prototype = Object.create(makeDancer.prototype);
 makeStarTrekDancer.prototype.constructor = makeStarTrekDancer;
 
-makeStarTrekDancer.prototype.lineUp = function(whichNode) {
+makeStarTrekDancer.prototype.lineUp = function(whichNode, array) {
   this.$node = $(whichNode);
   for (var i = 0; i < window.dancers.length; i++) {
 
@@ -89,7 +89,7 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
 
   //show the victor
   if (window.dancers.length === 1 && !window.CROWNEDKING){
-    this.lineUp($(clickedNode));
+    this.lineUp($(clickedNode), window.dancers);
 
     // Taking the attribute of 'class' to get string for winner announcement
     var type = $(clickedNode).attr('class').replace('starTrekDancer ', '');
