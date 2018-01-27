@@ -36,8 +36,7 @@ var makeStarTrekDancer = function(top, left, timeBetweenSteps) {
 makeStarTrekDancer.prototype = Object.create(makeDancer.prototype);
 makeStarTrekDancer.prototype.constructor = makeStarTrekDancer;
 
-makeStarTrekDancer.prototype.lineUp = function(whichNode, array, whatLine) {
-  //this.$node = $(whichNode);
+makeStarTrekDancer.prototype.lineUp = function(array, whatLine) {
   for (var i = 0; i < array.length; i++) {
 
     // vertical distance from the top of the window
@@ -60,9 +59,6 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
   //Creating a monkey node, css top and left come from click-node
   this.$node = $('<span class="monkeyDancer" style="top: ' + $(clickedNode).css('top') + '; left: ' + $(clickedNode).css('left') + '"><img src="img/monkey.png" height="100" width="100"></span>');
 
-  //adding to all the monkey dancers array
-  window.monkeys.push(this.$node);
-
   //Appending monkey node to the DOM body next to the selected node
   $(this.$node).insertAfter(targetNode);
 
@@ -77,8 +73,11 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
   this.$node.css('transform', path);
   this.$node.css('-webkit-transform', path);
 
-  //remove targetNode from existence
-  setTimeout( function() { $(targetNode).remove(); }, 1000);
+  // remove targetNode from existence
+  // we wait 1000ms to match the transition timing of the movement
+  setTimeout( function() {
+    $(targetNode).remove();
+  }, 1000);
 
   //remove targetNode from global dancers array
   for (var i = 0; i < window.dancers.length; i++) {
@@ -89,8 +88,7 @@ makeStarTrekDancer.prototype.attack = function(clickedNode) {
 
   //show the victor
   if (window.dancers.length === 1 && !window.CROWNEDKING){
-    this.lineUp($(clickedNode), window.dancers, 500);
-    this.lineUp($(clickedNode), window.monkeys, 300);
+    this.lineUp(window.dancers, 500);
 
     // Taking the attribute of 'class' to get string for winner announcement
     var type = $(clickedNode).attr('class').replace('starTrekDancer ', '');
